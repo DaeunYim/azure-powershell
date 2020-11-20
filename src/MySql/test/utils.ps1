@@ -8,6 +8,9 @@ function RandomString([bool]$allChars, [int32]$len) {
 
 $env = @{}
 function setupEnv() {
+    Write-Host -ForegroundColor Yellow "WARNING: Need to use Az.Network module"
+    Import-Module -Name Az.Network
+
     # Preload subscriptionId and tenant from context, which will be used in test
     # as default. You could change them if needed.
     $env.SubscriptionId = (Get-AzContext).Subscription.Id
@@ -38,6 +41,10 @@ function setupEnv() {
     $FlexibleSku = "Standard_B1ms"
     $env.Add("Sku", $Sku)
     $env.Add("FlexibleSku", $FlexibleSku)
+    # Create the test Vnet
+    write-host "Deploy Vnet template"
+    New-AzDeployment -Mode Incremental -TemplateFile .\test\deployment-templates\virtual-network\template.json -TemplateParameterFile .\test\deployment-templates\virtual-network\parameters.json -Name vn -ResourceGroupName $resourceGroup
+
 
     write-host (Get-AzContext | Out-String)
 

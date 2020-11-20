@@ -13,11 +13,12 @@ Creates a new server.
 ## SYNTAX
 
 ```
-New-AzMySqlFlexibleServer -Name <String> -ResourceGroupName <String>
- -AdministratorLoginPassword <SecureString> -AdministratorUserName <String> [-SubscriptionId <String>]
- [-BackupRetentionDay <Int32>] [-Location <String>] [-Sku <String>] [-SkuTier <String>] [-StorageInMb <Int32>]
- [-Tag <Hashtable>] [-Version <ServerVersion>] [-DefaultProfile <PSObject>] [-AsJob] [-NoWait] [-Confirm]
- [-WhatIf] [<CommonParameters>]
+New-AzMySqlFlexibleServer [-Name <String>] [-ResourceGroupName <String>] [-SubscriptionId <String>]
+ [-AddressPrefix <Object>] [-AdministratorLoginPassword <SecureString>] [-AdministratorUserName <String>]
+ [-BackupRetentionDay <Int32>] [-HighAvailability <Object>] [-Location <String>] [-PublicAccess <Object>]
+ [-Sku <String>] [-SkuTier <String>] [-StorageInMb <Int32>] [-Subnet <Object>] [-SubnetPrefix <Object>]
+ [-Tag <Hashtable>] [-Version <ServerVersion>] [-Vnet <Object>] [-VnetPrefix <Object>]
+ [-DefaultProfile <PSObject>] [-AsJob] [-NoWait] [-Confirm] [-WhatIf] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -25,29 +26,49 @@ Creates a new server.
 
 ## EXAMPLES
 
-### -------------------------- EXAMPLE 1 --------------------------
+### Example 1: Create a new MySql flexible server
 ```powershell
-$password = 'Pasword01!!2020' | ConvertTo-SecureString -AsPlainText -Force
+PS C:\> $password = 'Pasword01!!2020' | ConvertTo-SecureString -AsPlainText -Force
 PS C:\> New-AzMySqlFlexibleServer -Name mysql-test -ResourceGroupName PowershellMySqlTest \
 -Location eastus -AdministratorUserName mysqltest -AdministratorLoginPassword $password -Sku Standard_B1ms -SkuTier Burstable -Version 12 -StorageInMb 10240
-```
 
 Name            Location AdministratorLogin Version StorageProfileStorageMb SkuName         SkuTier     
 ----            -------- ------------------ ------- ----------------------- ------------    -------------        
-mysql-test      WestUS 2   mysqltest    5.7      10240                  Standard_B1ms   Burstable
+mysql-test      West US 2   mysqltest    5.7      10240                  Standard_B1ms   Burstable
+```
 
-### -------------------------- EXAMPLE 2 --------------------------
+
+
+### Example 2: Create a new MySql flexible server with default setting
 ```powershell
-$password = 'Pasword01!!2020' | ConvertTo-SecureString -AsPlainText -Force
+PS C:\> $password = 'Pasword01!!2020' | ConvertTo-SecureString -AsPlainText -Force
 PS C:\> New-AzMySqlFlexibleServer -Name mysql-test -ResourceGroupName PowershellMySqlTest \
 -AdministratorUserName mysqltest -AdministratorLoginPassword $password
-```
 
 Name            Location AdministratorLogin Version StorageProfileStorageMb SkuName         SkuTier     
 ----            -------- ------------------ ------- ----------------------- ------------    -------------        
 mysql-test      West US 2   mysqltest    5.7      131072                  Standard_B1ms   Burstable
+```
+
+Create MySql server with default values.
+The default values of location is West US 2, Sku is Standard_B1ms, Sku tier is Burstable, and storage size is 10GiB.
 
 ## PARAMETERS
+
+### -AddressPrefix
+The virtual network address prefix.
+
+```yaml
+Type: System.Object
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -AdministratorLoginPassword
 The password of the administrator.
@@ -59,7 +80,7 @@ Type: System.Security.SecureString
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -75,7 +96,7 @@ Type: System.String
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -128,6 +149,23 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -HighAvailability
+Enable or disable high availability feature.
+Default value is Disabled.
+Default: Disabled.
+
+```yaml
+Type: System.Object
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Location
 The location the resource resides in.
 
@@ -151,7 +189,7 @@ Type: System.String
 Parameter Sets: (All)
 Aliases: ServerName
 
-Required: True
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -173,6 +211,29 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -PublicAccess
+Determines the public access.
+Enter single or range of IP addresses to be 
+            included in the allowed list of IPs.
+IP address ranges must be dash-
+            separated and not contain any spaces.
+Specifying 0.0.0.0 allows public
+            access from any resources deployed within Azure to access your server.
+            Specifying no IP address sets the server in public access mode but does
+            not create a firewall rule.
+
+```yaml
+Type: System.Object
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -ResourceGroupName
 The name of the resource group that contains the resource, You can obtain this value from the Azure Resource Manager API or the portal.
 
@@ -181,7 +242,7 @@ Type: System.String
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -236,6 +297,38 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Subnet
+Resource ID of an existing subnet.
+Please note that the subnet will be delegated to Microsoft.DBforPostgreSQL/flexibleServers/Microsoft.DBforMySQL/flexibleServers.After delegation, this subnet cannot be used for any other type of Azure resources.
+
+```yaml
+Type: System.Object
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SubnetPrefix
+The subnet IP address prefix to use when creating a new VNet in CIDR format.
+Default value is 10.0.0.0/24.
+
+```yaml
+Type: System.Object
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -SubscriptionId
 The subscription ID that identifies an Azure subscription.
 
@@ -271,6 +364,39 @@ Server version.
 
 ```yaml
 Type: Microsoft.Azure.PowerShell.Cmdlets.MySql.Support.ServerVersion
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Vnet
+Name of an existing virtual network or name of a new one to create.
+The name must be between 2 to 64 characters.
+The name must begin with a letter or number, end with a letter, number or underscore, and may contain only letters, numbers, underscores, periods, or hyphens.
+
+```yaml
+Type: System.Object
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -VnetPrefix
+The IP address prefix to use when creating a new virtual network in CIDR format.
+Default value is 10.0.0.0/16.
+
+```yaml
+Type: System.Object
 Parameter Sets: (All)
 Aliases:
 
