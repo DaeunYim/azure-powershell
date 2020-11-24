@@ -186,21 +186,21 @@ function New-AzMySqlFlexibleServer {
             if (!$PSBoundParameters.ContainsKey('AdministratorLoginPassword')) {
                 $Password = Get-GeneratePassword
                 $PSBoundParameters.AdministratorLoginPassword = $Password | ConvertTo-SecureString -AsPlainText -Force
-                Write-Output "G Password: " $Password
-                Write-Output "Password: " $PSBoundParameters.AdministratorLoginPassword
+                Write-Host "G Password: " $Password
+                Write-Host "Password: " $PSBoundParameters.AdministratorLoginPassword
             }
             $PSBoundParameters.AdministratorLoginPassword = . "$PSScriptRoot/../utils/Unprotect-SecureString.ps1" $PSBoundParameters['AdministratorLoginPassword']
 
             if(!$PSBoundParameters.ContainsKey('ResourceGroupName')) {
                 $PSBoundParameters.ResourceGroupName = Get-RandomNumbers -Prefix 'group' -Length 10
                 $Msg = "Creating Resource Group " + $PSBoundParameters.ResourceGroupName + "..."
-                Write-Output $Msg
+                Write-Host $Msg
                 If (!(Test-Path (Join-Path $PSScriptRoot '../generated/modules/Az.Resources'))){
-                    Write-Output "No resources module here"
+                    Write-Host "No resources module here"
                     Find-Module -Name Az.Resources -RequiredVersion 2.0.1 -Repository 'PSGallery' | Save-Module -Path (Join-Path $PSScriptRoot '../generated/modules')
                 }
                 Else {
-                    Write-Output "Yes resources module here"
+                    Write-Host "Yes resources module here"
                 }
                 Import-Module -Name Az.Resources -RequiredVersion 2.0.1
                 New-AzResourceGroup -Name $PSBoundParameters.ResourceGroupName -Location $PSBoundParameters.Location
@@ -221,7 +221,7 @@ function New-AzMySqlFlexibleServer {
             else {
                 $PSBoundParameters.ServerName = Get-RandomNumbers -Prefix 'server' -Length 10
                 $Msg = "Provisioning server " + $PSBoundParameters.ServerName
-                Write-Output $Msg
+                Write-Host $Msg
             }
 
             if ($PSBoundParameters.ContainsKey('Sku')) {
@@ -266,53 +266,122 @@ function New-AzMySqlFlexibleServer {
             
             $PSBoundParameters.CreateMode = [Microsoft.Azure.PowerShell.Cmdlets.MySql.Support.CreateMode]::Default
 
-            
-            # ForEach($item in $PSBoundParameters) { Write-Output $item $PSBoundParameters[$item] }
-            $NetworkKeys = 'PublicAccess', 'Subnet', 'Vnet', 'SubnetPrefix', 'VnetPrefix', 'ResourceGroupName', 'ServerName', 'Location'
+            $NetworkKeys = 'PublicAccess', 'Subnet', 'Vnet', 'SubnetPrefix', 'VnetPrefix'
             $NetworkParameters = @{}
-            ForEach($Key in $NetworkKeys){If ($PSBoundParameters.ContainsKey($Key)){ $NetworkParameters[$Key] = $PSBoundParameters[$Key]}}
-            foreach($item in $NetworkParameters) { Write-Output $item $NetworkParameters[$item] }
+            ForEach($Key in $NetworkKeys){
+                If ($PSBoundParameters.ContainsKey($Key)){ 
+                    $NetworkParameters[$Key] = $PSBoundParameters[$Key]
+                    $null = $PSBoundParameters.Remove($Key)
+                }
+            }
+            $RequiredKeys = 'SubscriptionId', 'ResourceGroupName', 'ServerName', 'Location'
+            ForEach($Key in $RequiredKeys){ $NetworkParameters[$Key] = $PSBoundParameters[$Key] }
 
-            $PSBoundParameters.DelegatedSubnetArgumentSubnetArmResourceId = CreateNetworkResource $NetworkParameters 
-            # New-AzMySqlFlexibleServerDatabase -Name $DEFAULT_DB_NAME -ResourceGroupName $PSBoundParameters.ResourceGroupName -ServerName $PSBoundParameters.ServerName -Charset utf8
-            
-            # Az.MySql.internal\New-AzMySqlFlexibleServer @PSBoundParameters
+            $SubnetId = CreateNetworkResource $NetworkParameters | Out-String
+            $PSBoundParameters.DelegatedSubnetArgumentSubnetArmResourceId = $SubnetId.Trim()
+            If ([string]::IsNullOrEmpty($PSBoundParameters.DelegatedSubnetArgumentSubnetArmResourceId)) {
+                $null = $PSBoundParameters.Remove('DelegatedSubnetArgumentSubnetArmResourceId')
+            }
+
+            Az.MySql.internal\New-AzMySqlFlexibleServer @PSBoundParameters
+            New-AzMySqlFlexibleServerDatabase -Name $DEFAULT_DB_NAME -ResourceGroupName $PSBoundParameters.ResourceGroupName -ServerName $PSBoundParameters.ServerName -Charset utf8
+            CreateFirewallRule $NetworkParameters
+
         } catch {
             throw
         }
     }
 }
-
 function CreateNetworkResource($Parameters) {
+    [OutputType([string])]
+    $WarningPreference = 'silentlycontinue'
     $SubnetId = $null
-    Write-Output "Printing parameters.."
-    foreach($item in $Parameters) { Write-Output $item $Parameters[$item] }
-    # If (!(Test-Path (Join-Path $PSScriptRoot '../generated/modules/Az.Network'))){
-    #     Write-Output "No network module here"
-    #     Find-Module -Name Az.Network -RequiredVersion 3.0.0 -Repository 'PSGallery' | Save-Module -Path (Join-Path $PSScriptRoot '../generated/modules')
-    # }
-    # Else {
-    #     Write-Output "Yes network module here"
-    # }
-    # Import-Module -Name Az.Network -RequiredVersion 3.0.0
+    If (!(Test-Path (Join-Path $PSScriptRoot '../generated/modules/Az.Network'))){
+        Find-Module -Name Az.Network -RequiredVersion 3.0.0 -Repository 'PSGallery' | Save-Module -Path (Join-Path $PSScriptRoot '../generated/modules')
+    }
+    Import-Module -Name Az.Network -RequiredVersion 3.0.0
 
-    # # 1. Error Handling
-    # # Raise error when user passes values for both parameters
-    # if ($Parameters.ContainsKey('Subnet') -And $Parameters.ContainsKey('PublicAccess')) {
-    #     Write-Error "Incorrect usage : A combination of the parameters --subnet and --public_access is invalid. Use either one of them."
-    # }
+    # 1. Error Handling
+    # Raise error when user passes values for both parameters
+    if ($Parameters.ContainsKey('Subnet') -And $Parameters.ContainsKey('PublicAccess')) {
+        Write-Error "Incorrect usage : A combination of the parameters --subnet and --public_access is invalid. Use either one of them."
+    }
 
-    # # When address space parameters are passed, the only valid combination is : --vnet, --subnet, --vnet-address-prefix, --subnet-address-prefix
-    # if ($Parameters.ContainsKey('Vnet') -Or $Parameters.ContainsKey('Subnet')) {
-    #     if (!($Parameters.ContainsKey('VnetPrefix') -And $Parameters.ContainsKey('SubnetPrefix'))){
-    #         Write-Error "Incorrect usage : --vnet, --subnet, --vnet-address-prefix, --subnet-address-prefix must be supplied together."
-    #     }
-    # }
+    # When address space parameters are passed, the only valid combination is : --vnet, --subnet, --vnet-address-prefix, --subnet-address-prefix
+    if ($Parameters.ContainsKey('Vnet') -Or $Parameters.ContainsKey('Subnet')) {
+        if (($Parameters.ContainsKey('VnetPrefix') -And !$Parameters.ContainsKey('SubnetPrefix')) -Or
+            (!$Parameters.ContainsKey('VnetPrefix') -And $Parameters.ContainsKey('SubnetPrefix')) -Or 
+            ($Parameters.ContainsKey('VnetPrefix') -And $Parameters.ContainsKey('SubnetPrefix') -And (!$Parameters.ContainsKey('Vnet') -Or !$Parameters.ContainsKey('Subnet')))){
+                Write-Error "Incorrect usage : --vnet, --subnet, --vnet-address-prefix, --subnet-address-prefix must be supplied together."
+        }
+    }
     
     #Handle Vnet scenario
     If ($Parameters.ContainsKey('Vnet') -Or $Parameters.ContainsKey('Subnet')) {
-        return $SubnetId
+        # Only the Subnet ID provided.. 
+        If (!$Parameters.ContainsKey('Vnet') -And $Parameters.ContainsKey('Subnet')) {
+            If (IsValidResourceId $Parameters.ContainsKey('Subnet')){
+                Try { # Valid Subnet ID is provided
+                    $Subnet = Get-AzVirtualNetworkSubnetConfig -ResourceId $Parameters.Subnet -ErrorAction Stop
+                    Try { # Valid and delegated
+                        $Delegations = Get-AzDelegation -Subnet $Subnet 
+                        $Delegations | ForEach-Object {If ($PSItem.ServiceName -ne $DELEGATION_SERVICE_NAME) {
+                            $Msg = "Can not use subnet with existing delegations other than " + $DELEGATION_SERVICE_NAME
+                            Write-Error $Msg
+                        }}
+                    } Catch { # Valid but incorrect delegation
+                        $null = $Subnet = Get-AzVirtualNetworkSubnetConfig -ResourceId $Parameters.Subnet
+                        $null = $Subnet = Add-AzDelegation -Name $DELEGATION_SERVICE_NAME -ServiceName $DELEGATION_SERVICE_NAME -Subnet $Subnet
+                    }
+                }
+                Catch { # Invalid subnet ID is provided, creating a new one. 
+                    $Splits = $Parameters.ContainsKey('Subnet') -split "/"
+                    $Parameters.VnetName = $Splits[8]
+                    $Parameters.SubnetName = $Splits[10]
+                    CreateVnetSubnet @Parameters
+                }
+            }
+            Else {
+                Write-Error "The Subnet ID is not a valid form of resource id."
+            }
+        }
+        ElseIf ($Parameters.ContainsKey('Vnet') -And !$Parameters.ContainsKey('Subnet')) {
+            $Splits = $Parameters.Vnet -split "/"
+            If (IsValidResourceId $Parameters.ContainsKey('Vnet')){
+                Write-Host "You have supplied a Vnet Id. Verifying its existence..."
+                IsValidRgLocation @Parameters
+                $Subnet = CreateVnetSubnet @Parameters
+            }
+            ElseIf ($Splits.length -eq 1) {
+                Write-Host "You have supplied a Vnet Name. Verifying its existence..."
+                $Subnet = CreateVnetSubnet @Parameters
+                $ParsedSubnetId = ParseResourceId $Subnet.Id
+                IsValidRgLocation $ParsedSubnetId $Parameters 
+            }
+            Else {
+                Write-Error "Incorrectly formed Vnet id or Vnet name"
+            }
+        }
+        ElseIf ($Parameters.ContainsKey('Vnet') -And $Parameters.ContainsKey('Subnet') -And $Parameters.ContainsKey('SubnetPrefix') -And $Parameters.ContainsKey('VnetPrefix')) {
+            $VnetSplits = $Parameters.Vnet -split "/"
+            $SubnetSplits = $Parameters.Subnet -split "/"
+            If ($VnetSplits.length -eq 1 -And $SubnetSplits -eq 1) {
+                $Subnet = CreateVnetSubnet @Parameters
+            }
+            Else {
+                Write-Error "If you pass an address prefix, please consider passing a name (instead of Id) for a subnet or vnet."
+            }
+        }
+        ElseIf ($Parameters.ContainsKey('Vnet') -And $Parameters.ContainsKey('Subnet')) {
+            If ($VnetSplits.length -eq 1 -And $SubnetSplits -eq 1) {
+                $Subnet = CreateVnetSubnet @Parameters
+            }
+            Else {
+                Write-Error "If you pass both --vnet and --subnet, consider passing names instead of ids."
+            }
+        }
     }
+
     ElseIf (!$Parameters.ContainsKey('PublicAccess') -And !$Parameters.ContainsKey('Subnet') -And !$Parameters.ContainsKey('Vnet')) {
         $VnetName = 'VNET' + $Parameters.ServerName
         $SubnetName = 'Subnet' + $Parameters.ServerName
@@ -320,58 +389,123 @@ function CreateNetworkResource($Parameters) {
         $SubnetAddrPrefix = $DEFAULT_SUBNET_PREFIX
 
         $Msg = 'Creating new vnet' + $VnetName + 'in resource group' + $Parameters.ResourceGroupName
-        Write-Output $Msg
-        Get-Help New-AzVirtualNetworkSubnetConfig
-        Get-Help New-AzVirtualNetwork
-        Get-Help Add-AzDelegation
-        Get-Help Set-AzVirtualNetwork
-        Get-Help Get-AzVirtualNetwork
-        Get-Help Get-AzDelegation
         $Subnet = New-AzVirtualNetworkSubnetConfig -Name $SubnetName -AddressPrefix $SubnetAddrPrefix
-        $Vnet = New-AzVirtualNetwork -Name $VnetName -ResourceGroupName $Parameters.ResourceGroupName -Location $Parameters.Location -AddressPrefix $VnetAddrPrefix -Subnet $Subnet
-        $Subnet = Add-AzDelegation -Name "MySqlDelegation" -ServiceName $DELEGATION_SERVICE_NAME -Subnet $Subnet
-        Set-AzVirtualNetwork -VirtualNetwork $Vnet
-        
-        # # Verify
-        $Subnet = Get-AzVirtualNetwork -Name $VnetName -ResourceGroupName $Parameters.ResourceGroupName | Get-AzVirtualNetworkSubnetConfig -Name $SubnetName
-        Get-AzDelegation -Name "MySqlDelegation" -Subnet $Subnet
+        New-AzVirtualNetwork -Name $VnetName -ResourceGroupName $Parameters.ResourceGroupName -Location $Parameters.Location -AddressPrefix $VnetAddrPrefix -Subnet $Subnet
 
-        Write-Output 'Creating new subnet' $SubnetName 'in resource group ' $Parameters.ResourceGroupName 'and delegating it to ' $DELEGATION_SERVICE_NAME
-        return $SubnetId = $Subnet.Id
+        $null = $Vnet = Get-AzVirtualNetwork -Name $VnetName -ResourceGroupName $Parameters.ResourceGroupName
+        $null = $Subnet = Get-AzVirtualNetworkSubnetConfig -Name $SubnetName -VirtualNetwork $Vnet
+        $null = $Subnet = Add-AzDelegation -Name $DELEGATION_SERVICE_NAME -ServiceName $DELEGATION_SERVICE_NAME -Subnet $Subnet
+        $null = Set-AzVirtualNetwork -VirtualNetwork $Vnet
+        
+        $Subnet = Get-AzVirtualNetwork -Name $VnetName -ResourceGroupName $Parameters.ResourceGroupName | Get-AzVirtualNetworkSubnetConfig -Name $SubnetName
+
+        $Msg = 'Creating new subnet' + $SubnetName + 'in resource group ' + $Parameters.ResourceGroupName + 'and delegating it to ' + $DELEGATION_SERVICE_NAME
+        Write-Host $Msg
+
+        $SubnetId = $Subnet.Id
+    }  
+
+    return $SubnetId
+}
+function CreateVnetSubnet($Parameters){
+    Try {
+        $Vnet = Get-AzVirtualNetwork -Name $Parameters.VnetName -ResourceGroupName $Parameters.ResourceGroupName
+    }
+    Catch {
+        $Msg = "The Vnet does not exist. Creating new vnet " + $Parameters.VnetName + " in resource group " + $Parameters.ResourceGroupName
+        Write-Host $Msg
+        If ($Parameters.ContainsKey('SubnetPrefix')){$SubnetAddrPrefix = $Parameters.SubnetPrefix}
+        Else {$SubnetAddrPrefix = $DEFAULT_SUBNET_PREFIX}
+        If ($Parameters.ContainsKey('VnetPrefix')){$SubnetAddrPrefix = $Parameters.VnetPrefix}
+        Else {$VnetAddrPrefix = $DEFAULT_VNET_PREFIX}
+
+        $Subnet = New-AzVirtualNetworkSubnetConfig -Name $SubnetName -AddressPrefix $SubnetAddrPrefix
+        New-AzVirtualNetwork -Name $VnetName -ResourceGroupName $Parameters.ResourceGroupName -Location $Parameters.Location -AddressPrefix $VnetAddrPrefix -Subnet $Subnet
+
+        $null = $Vnet = Get-AzVirtualNetwork -Name $VnetName -ResourceGroupName $Parameters.ResourceGroupName
+        $null = $Subnet = Get-AzVirtualNetworkSubnetConfig -Name $SubnetName -VirtualNetwork $Vnet
+        $null = $Subnet = Add-AzDelegation -Name $DELEGATION_SERVICE_NAME -ServiceName $DELEGATION_SERVICE_NAME -Subnet $Subnet
+        $null = Set-AzVirtualNetwork -VirtualNetwork $Vnet
+
+        Return $Subnet.Id
     }
 
-
-    # # Adding firewall rule
-    # If ($Parameters.ContainsKey('PublicAccess') -And $Parameters.PublicAccess.ToLower() -ne 'none') {
-    #     If ($Parameters.PublicAccess.ToLower() -eq 'all'){
-    #         $StartIp = '0.0.0.0' 
-    #         $EndIp = '255.255.255.255'
-    #         $FirewallRule = New-AzMySqlFlexibleServerFirewallRule -ResourceGroupName $Parameters.ResourceGroupName -ServerName $Parameters.ServerName -EndIPAddress $EndIp -StartIPAddress $StartIp
-    #     }
-    #     Else {
-    #         try{
-    #             $Parsed = $Parameters.PublicAccess -split "-"
-    #             If ($Parsed.length -eq 1) {
-    #                 $StartIp = $Parsed[0]
-    #                 $EndIp = $Parsed[0]
-    #             }
-    #             ElseIf ($Parsed.length -eq 2) {
-    #                 $StartIp = $Parsed[0]
-    #                 $EndIp = $Parsed[1]
-    #             }
-    #             Else { Write-Error "incorrect usage: --public-access. Acceptable values are \'all\', \'none\',\'<startIP>\' and \'<startIP>-<destinationIP>\' where startIP and destinationIP ranges from 0.0.0.0 to 255.255.255.255" }
+}
+function CreateFirewallRule($Parameters) {
+     # # Adding firewall rule
+     If ($Parameters.ContainsKey('PublicAccess') -And $Parameters.PublicAccess.ToLower() -ne 'none') {
+        $Date = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
+        If ($Parameters.PublicAccess.ToLower() -eq 'all'){
+            $StartIp = '0.0.0.0' 
+            $EndIp = '255.255.255.255'
+            $RuleName = "AllowAll_" + $Date 
+            $FirewallRule = New-AzMySqlFlexibleServerFirewallRule -Name $RuleName -ResourceGroupName $Parameters.ResourceGroupName -ServerName $Parameters.ServerName -EndIPAddress $EndIp -StartIPAddress $StartIp
+        }
+        Else {
+            try{
+                $Parsed = $Parameters.PublicAccess -split "-"
+                If ($Parsed.length -eq 1) {
+                    $StartIp = $Parsed[0]
+                    $EndIp = $Parsed[0]
+                }
+                ElseIf ($Parsed.length -eq 2) {
+                    $StartIp = $Parsed[0]
+                    $EndIp = $Parsed[1]
+                }
+                Else { Write-Error "incorrect usage: --public-access. Acceptable values are \'all\', \'none\',\'<startIP>\' and \'<startIP>-<destinationIP>\' where startIP and destinationIP ranges from 0.0.0.0 to 255.255.255.255" }
                 
-    #             If ($StartIp -eq '0.0.0.0' -And $EndIp -eq '0.0.0.0') {
-    #                 $RuleName = Get-Date -Format "AllowAllAzureServicesAndResourcesWithinAzureIps_yyyy-MM-dd_HH-mm-ss"
-    #             }
-    #             Else {
-    #                 $RuleName = Get-Date -Format "FirewallIPAddress_yyyy-MM-dd_HH-mm-ss"
-    #             }
-    #             $FirewallRule = New-AzMySqlFlexibleServerFirewallRule -Name $RuleName -ResourceGroupName $Parameters.ResourceGroupName -ServerName $Parameters.ServerName -EndIPAddress $EndIp -StartIPAddress $StartIp
-    #         } catch {
-    #             Write-Error "incorrect usage: --public-access. Acceptable values are \'all\', \'none\',\'<startIP>\' and \'<startIP>-<destinationIP>\' where startIP and destinationIP ranges from 0.0.0.0 to 255.255.255.255"
-    #         }
-    #     }
-    # }
-    return $SubnetId
+                If ($StartIp -eq '0.0.0.0' -And $EndIp -eq '0.0.0.0') {
+                    $RuleName = "AllowAllAzureServicesAndResourcesWithinAzureIps_" + $Date
+                }
+                Else {
+                    $RuleName = "FirewallIPAddress_" + $Date
+                }
+                $FirewallRule = New-AzMySqlFlexibleServerFirewallRule -Name $RuleName -ResourceGroupName $Parameters.ResourceGroupName -ServerName $Parameters.ServerName -EndIPAddress $EndIp -StartIPAddress $StartIp
+            } catch {
+                Write-Error "incorrect usage: --public-access. Acceptable values are \'all\', \'none\',\'<startIP>\' and \'<startIP>-<destinationIP>\' where startIP and destinationIP ranges from 0.0.0.0 to 255.255.255.255"
+            }
+        }
+    }
+}
+function IsValidVnetId($Rid){
+    $VnetFormat = "\/subscriptions\/[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}\/resourceGroups\/[-\w\._\(\)]+\/providers\/Microsoft.Network\/VirtualNetworks\/[^<>%&:\\?/]{1,260}$"
+    If ( $Rid -match $VnetFormat ) {
+        return $True
+    }
+    return $False
+}
+function IsValidSubnetId($Rid){
+    $SubnetFormat = "\/subscriptions\/[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}\/resourceGroups/[-\w\._\(\)]+\/providers\/Microsoft.Network\/VirtualNetworks\/[^<>%&:\\?/]{1,260}\/subnets\/[^<>%&:\\?/]{1,260}$"
+    IF ( $Rid -match $SubnetFormat ) {
+        return $True
+    }
+    return $False
+}
+
+function ParseResourceId($Rid){
+    $Splits = $Rid -split "/"
+    $ParsedResults = @{}
+    $ParsedResults["SubscriptionId"] = $Splits[2]
+    $ParsedResults["ResourceGroupName"] = $Splits[4]
+    $ParsedResults["VnetName"] = $Splits[8]
+    If ($Splits.length -eq 10) {
+        $ParsedResults["SubnetName"] = $Splits[10]
+    }
+
+    return $ParsedResults
+}
+
+function IsValidRgLocation($ParsedResults, $Parameters){
+    $Group = Get-AzResourceGroup $ParsedResults["ResourceGroupName"]
+    $ParsedResults["ocatioin"] = $Group.Location
+
+    If ($Parameters.SubscriptionId -eq $ParsedResults.SubscriptionId -And $Parameters.Location -eq $ParsedResults.Location) {
+        Return $True
+    }
+    Return $False
+}
+
+function IsValidARMName($Name){
+    $ARM_NAME = '^[^<>%&:\\?/]{1,260}$'
+    return $Name -match $ARM_NAME
 }
