@@ -14,6 +14,7 @@ function setupEnv() {
     $env.Tenant = (Get-AzContext).Tenant.Id
     # For any resources you created for test, you should add it to $env here.
     $env.Add("serverName2", "mysql-test-100-2")
+    $env.Add("serverName3", "mysql-test-100-3")
     $env.Add("restoreName", "mysql-test-100-restore")
     $env.Add("restoreName2", "mysql-test-100-restore-2")
     $env.Add("replicaName", "mysql-test-100-replica")
@@ -21,6 +22,7 @@ function setupEnv() {
     $env.Add("firewallRuleName2", "mysqlrule02")
     $env.Add("databaseName", "mysqldb")
     $env.Add("VNetName", "mysqlvnet")
+    $env.Add("SubnetName", "mysql-test-subnet")
 
     # Create the test group
     write-host "start to create test group."
@@ -30,9 +32,6 @@ function setupEnv() {
     $env.Add("location", $location)
     New-AzResourceGroup -Name $resourceGroup -Location $location
 
-    write-host "Deploy Vnet template"
-    New-AzDeployment -Mode Incremental -TemplateFile .\test\deployment-templates\virtual-network\template.json -TemplateParameterFile .\test\deployment-templates\virtual-network\parameters.json -Name vn -ResourceGroupName $resourceGroup
-
     #[SuppressMessage("Microsoft.Security", "CS002:SecretInNextLine")]
     $password = 'Pasword01!!2020' | ConvertTo-SecureString -AsPlainText -Force
     $serverName = "mysql-test-100"
@@ -41,6 +40,10 @@ function setupEnv() {
     $FlexibleSku = "Standard_B1ms"
     $env.Add("Sku", $Sku)
     $env.Add("FlexibleSku", $FlexibleSku)
+    # Create the test Vnet
+    write-host "Deploy Vnet template"
+    New-AzDeployment -Mode Incremental -TemplateFile .\test\deployment-templates\virtual-network\template.json -TemplateParameterFile .\test\deployment-templates\virtual-network\parameters.json -Name vn -ResourceGroupName $resourceGroup
+
 
     write-host (Get-AzContext | Out-String)
 

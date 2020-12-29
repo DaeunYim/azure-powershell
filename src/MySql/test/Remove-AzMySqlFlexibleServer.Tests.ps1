@@ -14,11 +14,13 @@ while(-not $mockingPath) {
 # !Important: some test cases are skipped and require to be recorded again
 # See https://github.com/Azure/autorest.powershell/issues/580
 Describe 'Remove-AzMySqlFlexibleServer' {
-    It 'Delete' -Skip {
+    It 'Delete' {
         {
-            #[SuppressMessage("Microsoft.Security", "CS002:SecretInNextLine")]
-            $password = 'Pasword01!!2020' | ConvertTo-SecureString -AsPlainText -Force
-            New-AzMySqlFlexibleServer -ResourceGroupName $env.resourceGroup -Name $env.serverName -AdministratorUserName mysql_test -AdministratorLoginPassword $password 
+            If ($TestMode -eq 'live' -or $TestMode -eq 'record') {
+                #[SuppressMessage("Microsoft.Security", "CS002:SecretInNextLine")]
+                $password = 'Pasword01!!2020' | ConvertTo-SecureString -AsPlainText -Force
+                New-AzMySqlFlexibleServer -ResourceGroupName $env.resourceGroup -Name $env.serverName2 -AdministratorUserName mysql_test -AdministratorLoginPassword $password 
+            }
             Remove-AzMySqlFlexibleServer -ResourceGroupName $env.resourceGroup -Name $env.serverName2
         } | Should -Not -Throw
     }
