@@ -6,8 +6,6 @@ src/local-artifacts/*
 /tools/AzureRM/AzureRM.psm1
 !.placeholder
 
-obj
-bin
 TestResults
 *.orig
 *.ncrunchsolution
@@ -37,7 +35,6 @@ app.config
 x64/
 build/
 bld/
-src/*/[Bb]in/
 setup/**/*/[Bb]in/
 setup/[Bb]in/
 [Oo]bj/
