@@ -68,7 +68,6 @@ Describe 'New-AzPostgreSqlFlexibleServer' {
                 $FirewallRules[0].StartIPAddress | Should -Be "0.0.0.0"
                 $FirewallRules[0].EndIPAddress | Should -Be "0.0.0.0"
                 Remove-AzPostgreSqlFlexibleServer -ResourceGroupName $env.resourceGroup -Name $env.serverName2
-                WaitServerDelete
             } | Should -Not -Throw
         }
     }
@@ -83,7 +82,6 @@ Describe 'New-AzPostgreSqlFlexibleServer' {
                 $FirewallRules[0].StartIPAddress | Should -Be "10.10.10.10"
                 $FirewallRules[0].EndIPAddress | Should -Be "10.10.10.12"
                 Remove-AzPostgreSqlFlexibleServer -ResourceGroupName $env.resourceGroup -Name $env.serverName3
-                WaitServerDelete
             } | Should -Not -Throw
         }
     }
@@ -98,7 +96,6 @@ Describe 'New-AzPostgreSqlFlexibleServer' {
                 $FirewallRules[0].StartIPAddress | Should -Be "0.0.0.0"
                 $FirewallRules[0].EndIPAddress | Should -Be "255.255.255.255"
                 Remove-AzPostgreSqlFlexibleServer -ResourceGroupName $env.resourceGroup -Name $env.serverName2
-                WaitServerDelete
             } | Should -Not -Throw
         }
     }
