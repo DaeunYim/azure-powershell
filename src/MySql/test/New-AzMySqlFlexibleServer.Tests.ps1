@@ -55,7 +55,7 @@ Describe 'New-AzMySqlFlexibleServer' {
             if ($TestMode -eq 'live' -or $TestMode -eq 'record') {
                 # [SuppressMessage("Microsoft.Security", "CS002:SecretInNextLine")]
                 $password = 'Pasword01!!2020' | ConvertTo-SecureString -AsPlainText -Force
-                $server = New-AzMySqlFlexibleServer -Location $env.location -Name $env.serverName2 -ResourceGroupName $env.resourceGroup -AdministratorUserName mysql_test -AdministratorLoginPassword $password -SkuTier GeneralPurpose -BackupRetentionDay 12 -StorageInMb 102400
+                $server = New-AzMySqlFlexibleServer -Location $env.location -Name $env.serverName2 -ResourceGroupName $env.resourceGroup -AdministratorUserName mysql_test -AdministratorLoginPassword $password -SkuTier GeneralPurpose -BackupRetentionDay 12 -StorageInMb 102400 -PublicAccess None
                 $server.SkuTier | Should -Be "GeneralPurpose"
                 $server.StorageProfileStorageMb | Should -Be 102400
                 $server.StorageProfileBackupRetentionDay | Should -Be 12

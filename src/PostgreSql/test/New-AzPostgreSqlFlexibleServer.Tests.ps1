@@ -49,7 +49,7 @@ Describe 'New-AzPostgreSqlFlexibleServer' {
             {
                 #[SuppressMessage("Microsoft.Security", "CS002:SecretInNextLine")]
                 $password = 'Pasword01!!2020' | ConvertTo-SecureString -AsPlainText -Force
-                $server = New-AzPostgreSqlFlexibleServer -Location $env.location -Name $env.serverName2 -ResourceGroupName $env.resourceGroup -AdministratorUserName postgreqltest -AdministratorLoginPassword $password -Sku Standard_B1ms -SkuTier Burstable -BackupRetentionDay 12 -StorageInMb 65536
+                $server = New-AzPostgreSqlFlexibleServer -Location $env.location -Name $env.serverName2 -ResourceGroupName $env.resourceGroup -AdministratorUserName postgreqltest -AdministratorLoginPassword $password -Sku Standard_B1ms -SkuTier Burstable -BackupRetentionDay 12 -StorageInMb 65536 -PublicAccess None
                 $server.SkuName | Should -Be "Standard_B1ms"
                 $server.SkuTier | Should -Be "Burstable"
                 $server.StorageProfileStorageMb | Should -Be 65536
