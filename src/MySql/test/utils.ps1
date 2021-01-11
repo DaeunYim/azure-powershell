@@ -68,14 +68,7 @@ function setupEnv() {
     #[SuppressMessage("Microsoft.Security", "CS002:SecretInNextLine")]
     $password = 'Pasword01!!2020' | ConvertTo-SecureString -AsPlainText -Force    
     
-    # Create the test Vnet
-    write-host "Deploy Vnet template"
-    New-AzDeployment -Mode Incremental -TemplateFile .\test\deployment-templates\virtual-network\template.json -TemplateParameterFile .\test\deployment-templates\virtual-network\parameters.json -Name vn -ResourceGroupName $resourceGroup
-
     write-host (Get-AzContext | Out-String)
-
-    write-host "New-AzMySqlServer -Name $serverName -ResourceGroupName $resourceGroup -Location $location -AdministratorUserName mysql_test -AdministratorLoginPassword $password -Sku $Sku"
-    New-AzMySqlServer -Name $serverName -ResourceGroupName $resourceGroup -Location $location -AdministratorUserName mysql_test -AdministratorLoginPassword $password -Sku $Sku
 
     write-host "New-AzMySqlFlexibleServer -Name $flexibleServerName -ResourceGroupName $resourceGroup -AdministratorUserName mysql_test -AdministratorLoginPassword $password -PublicAccess all -Location $location"
     New-AzMySqlFlexibleServer -Name $flexibleServerName -ResourceGroupName $resourceGroup -AdministratorUserName mysql_test -AdministratorLoginPassword $password -PublicAccess all -Location $location
@@ -90,5 +83,5 @@ function cleanupEnv() {
     # Clean resources you create for testing
     # Removing resourcegroup will clean all the resources created for testing.
     write-host "Clean resources you create for testing."
-    Remove-AzResourceGroup -Name $env.resourceGroup
+    Remove-LiveAzResourceGroup -Name $env.resourceGroup
 }

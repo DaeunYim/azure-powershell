@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="nunit_schema_2.5.xsd" name="Pester" total="92" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2020-12-29" time="18:48:11">
+  <environment platform="Microsoft Windows 10 Enterprise|C:\WINDOWS|\Device\Harddisk0\Partition3" os-version="10.0.19042" user="daeunyim" cwd="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql" nunit-version="2.5.8.0" clr-version="Unknown" user-domain="REDMOND" machine-name="DESKTOP-R88RMV9" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="TestFixture" name="Pester" executed="True" result="Success" success="True" time="13.597" asserts="0" description="Pester">
+    <results>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Get-AzPostgreSqlConfiguration.Tests.ps1" executed="True" result="Success" success="True" time="0.8491" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Get-AzPostgreSqlConfiguration.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Get-AzPostgreSqlConfiguration" executed="True" result="Success" success="True" time="0.5539" asserts="0" description="Get-AzPostgreSqlConfiguration">
+            <results>
+              <test-case description="List" name="Get-AzPostgreSqlConfiguration.List" time="0.2306" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Get" name="Get-AzPostgreSqlConfiguration.Get" time="0.0386" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="GetViaIdentity" name="Get-AzPostgreSqlConfiguration.GetViaIdentity" time="0.0258" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Get-AzPostgreSqlConnectionString.Tests.ps1" executed="True" result="Success" success="True" time="0.4218" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Get-AzPostgreSqlConnectionString.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Get-AzPostgreSqlConnectionString" executed="True" result="Success" success="True" time="0.1971" asserts="0" description="Get-AzPostgreSqlConnectionString">
+            <results>
+              <test-case description="Get" name="Get-AzPostgreSqlConnectionString.Get" time="0.0381" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="GetViaIdentity" name="Get-AzPostgreSqlConnectionString.GetViaIdentity" time="0.092" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Get-AzPostgreSqlFirewallRule.Tests.ps1" executed="True" result="Success" success="True" time="0.4695" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Get-AzPostgreSqlFirewallRule.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Get-AzPostgreSqlFirewallRule" executed="True" result="Success" success="True" time="0.2413" asserts="0" description="Get-AzPostgreSqlFirewallRule">
+            <results>
+              <test-case description="List" name="Get-AzPostgreSqlFirewallRule.List" time="0.0839" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Get" name="Get-AzPostgreSqlFirewallRule.Get" time="0.041" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="GetViaIdentity" name="Get-AzPostgreSqlFirewallRule.GetViaIdentity" time="0.0402" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Get-AzPostgreSqlFlexibleServer.Tests.ps1" executed="True" result="Success" success="True" time="0.4159" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Get-AzPostgreSqlFlexibleServer.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Get-AzPostgreSqlFlexibleServer" executed="True" result="Success" success="True" time="0.1838" asserts="0" description="Get-AzPostgreSqlFlexibleServer">
+            <results>
+              <test-case description="List1" name="Get-AzPostgreSqlFlexibleServer.List1" time="0.0484" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Get" name="Get-AzPostgreSqlFlexibleServer.Get" time="0.0183" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="List" name="Get-AzPostgreSqlFlexibleServer.List" time="0.017" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="GetViaIdentity" name="Get-AzPostgreSqlFlexibleServer.GetViaIdentity" time="0.0164" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Get-AzPostgreSqlFlexibleServerConfiguration.Tests.ps1" executed="True" result="Success" success="True" time="0.3956" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Get-AzPostgreSqlFlexibleServerConfiguration.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Get-AzPostgreSqlFlexibleServerConfiguration" executed="True" result="Success" success="True" time="0.157" asserts="0" description="Get-AzPostgreSqlFlexibleServerConfiguration">
+            <results>
+              <test-case description="List" name="Get-AzPostgreSqlFlexibleServerConfiguration.List" time="0.0451" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Get" name="Get-AzPostgreSqlFlexibleServerConfiguration.Get" time="0.0206" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="GetViaIdentity" name="Get-AzPostgreSqlFlexibleServerConfiguration.GetViaIdentity" time="0.0183" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Get-AzPostgreSqlFlexibleServerConnectionString.Tests.ps1" executed="True" result="Success" success="True" time="0.3551" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Get-AzPostgreSqlFlexibleServerConnectionString.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Get-AzPostgreSqlFlexibleServerConnectionString" executed="True" result="Success" success="True" time="0.1289" asserts="0" description="Get-AzPostgreSqlFlexibleServerConnectionString">
+            <results>
+              <test-case description="Get" name="Get-AzPostgreSqlFlexibleServerConnectionString.Get" time="0.0735" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Get-AzPostgreSqlFlexibleServerFirewallRule.Tests.ps1" executed="True" result="Success" success="True" time="0.4291" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Get-AzPostgreSqlFlexibleServerFirewallRule.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Get-AzPostgreSqlFlexibleServerFirewallRule" executed="True" result="Success" success="True" time="0.1794" asserts="0" description="Get-AzPostgreSqlFlexibleServerFirewallRule">
+            <results>
+              <test-case description="List" name="Get-AzPostgreSqlFlexibleServerFirewallRule.List" time="0.0436" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Get" name="Get-AzPostgreSqlFlexibleServerFirewallRule.Get" time="0.0166" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="GetViaIdentity" name="Get-AzPostgreSqlFlexibleServerFirewallRule.GetViaIdentity" time="0.041" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Get-AzPostgreSqlFlexibleServerLocationBasedCapability.Tests.ps1" executed="True" result="Success" success="True" time="0.3625" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Get-AzPostgreSqlFlexibleServerLocationBasedCapability.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Get-AzPostgreSqlFlexibleServerLocationBasedCapability" executed="True" result="Success" success="True" time="0.1353" asserts="0" description="Get-AzPostgreSqlFlexibleServerLocationBasedCapability">
+            <results>
+              <test-case description="Get" name="Get-AzPostgreSqlFlexibleServerLocationBasedCapability.Get" time="0.081" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Get-AzPostgreSqlReplica.Tests.ps1" executed="True" result="Success" success="True" time="0.4258" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Get-AzPostgreSqlReplica.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Get-AzPostgreSqlReplica" executed="True" result="Success" success="True" time="0.2009" asserts="0" description="Get-AzPostgreSqlReplica">
+            <results>
+              <test-case description="List" name="Get-AzPostgreSqlReplica.List" time="0.1451" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Get-AzPostgreSqlServer.Tests.ps1" executed="True" result="Success" success="True" time="0.3458" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Get-AzPostgreSqlServer.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Get-AzPostgreSqlServer" executed="True" result="Success" success="True" time="0.1194" asserts="0" description="Get-AzPostgreSqlServer">
+            <results>
+              <test-case description="List1" name="Get-AzPostgreSqlServer.List1" time="0.0114" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Get" name="Get-AzPostgreSqlServer.Get" time="0.0078" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="List" name="Get-AzPostgreSqlServer.List" time="0.0154" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="GetViaIdentity" name="Get-AzPostgreSqlServer.GetViaIdentity" time="0.0073" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Get-AzPostgreSqlVirtualNetworkRule.Tests.ps1" executed="True" result="Success" success="True" time="0.4234" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Get-AzPostgreSqlVirtualNetworkRule.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Get-AzPostgreSqlVirtualNetworkRule" executed="True" result="Success" success="True" time="0.2059" asserts="0" description="Get-AzPostgreSqlVirtualNetworkRule">
+            <results>
+              <test-case description="List" name="Get-AzPostgreSqlVirtualNetworkRule.List" time="0.0735" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="Get" name="Get-AzPostgreSqlVirtualNetworkRule.Get" time="0.0367" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="GetViaIdentity" name="Get-AzPostgreSqlVirtualNetworkRule.GetViaIdentity" time="0.0332" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\New-AzPostgreSqlFirewallRule.Tests.ps1" executed="True" result="Success" success="True" time="0.3547" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\New-AzPostgreSqlFirewallRule.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="New-AzPostgreSqlFirewallRule" executed="True" result="Success" success="True" time="0.1392" asserts="0" description="New-AzPostgreSqlFirewallRule">
+            <results>
+              <test-case description="CreateExpanded" name="New-AzPostgreSqlFirewallRule.CreateExpanded" time="0.0257" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="ClientIPAddress" name="New-AzPostgreSqlFirewallRule.ClientIPAddress" time="0.0225" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="AllowAll" name="New-AzPostgreSqlFirewallRule.AllowAll" time="0.028" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\New-AzPostgreSqlFlexibleServer.Tests.ps1" executed="True" result="Success" success="True" time="0.4334" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\New-AzPostgreSqlFlexibleServer.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="New-AzPostgreSqlFlexibleServer" executed="True" result="Success" success="True" time="0.2158" asserts="0" description="New-AzPostgreSqlFlexibleServer">
+            <results>
+              <test-case description="CreateExpanded" name="New-AzPostgreSqlFlexibleServer.CreateExpanded" time="0.0018" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="PublicAccessScenario-AllAzure" name="New-AzPostgreSqlFlexibleServer.PublicAccessScenario-AllAzure" time="0.0026" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="PublicAccessScenario-FirewallRule" name="New-AzPostgreSqlFlexibleServer.PublicAccessScenario-FirewallRule" time="0.0016" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="PublicAccessScenario-AllowAll" name="New-AzPostgreSqlFlexibleServer.PublicAccessScenario-AllowAll" time="0.0015" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="NoArgumentsScenario" name="New-AzPostgreSqlFlexibleServer.NoArgumentsScenario" time="0.0013" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="VnetNameScenario-ValidVnet" name="New-AzPostgreSqlFlexibleServer.VnetNameScenario-ValidVnet" time="0.0008" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="VnetNameScenario-ValidVnetNotExist" name="New-AzPostgreSqlFlexibleServer.VnetNameScenario-ValidVnetNotExist" time="0.0011" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="VnetNameScenario-InvalidVnet" name="New-AzPostgreSqlFlexibleServer.VnetNameScenario-InvalidVnet" time="0.0012" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="VnetIdScenario-ValidVnet" name="New-AzPostgreSqlFlexibleServer.VnetIdScenario-ValidVnet" time="0.0008" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="VnetIdScenario-ValidVnetNotExist" name="New-AzPostgreSqlFlexibleServer.VnetIdScenario-ValidVnetNotExist" time="0.001" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="VnetIdScenario-InvalidVnet" name="New-AzPostgreSqlFlexibleServer.VnetIdScenario-InvalidVnet" time="0.0011" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="SubnetIdScenario-ValidSubnet" name="New-AzPostgreSqlFlexibleServer.SubnetIdScenario-ValidSubnet" time="0.0009" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="SubnetIdScenario-ValidSubnetDifferentRg" name="New-AzPostgreSqlFlexibleServer.SubnetIdScenario-ValidSubnetDifferentRg" time="0.001" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="SubnetIdScenario-ValidSubnetDelegation" name="New-AzPostgreSqlFlexibleServer.SubnetIdScenario-ValidSubnetDelegation" time="0.0008" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="SubnetIdScenario-ValidSubnetNotExist" name="New-AzPostgreSqlFlexibleServer.SubnetIdScenario-ValidSubnetNotExist" time="0.0011" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="SubnetIdScenario-InvalidSubnet" name="New-AzPostgreSqlFlexibleServer.SubnetIdScenario-InvalidSubnet" time="0.0015" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="VnetSubnetScenario-ValidVnetSubnetNotExist" name="New-AzPostgreSqlFlexibleServer.VnetSubnetScenario-ValidVnetSubnetNotExist" time="0.0009" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="VnetSubnetScenario-ValidVnetSubnet" name="New-AzPostgreSqlFlexibleServer.VnetSubnetScenario-ValidVnetSubnet" time="0.0008" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\New-AzPostgreSqlFlexibleServerFirewallRule.Tests.ps1" executed="True" result="Success" success="True" time="0.361" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\New-AzPostgreSqlFlexibleServerFirewallRule.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="New-AzPostgreSqlFlexibleServerFirewallRule" executed="True" result="Success" success="True" time="0.139" asserts="0" description="New-AzPostgreSqlFlexibleServerFirewallRule">
+            <results>
+              <test-case description="CreateExpanded" name="New-AzPostgreSqlFlexibleServerFirewallRule.CreateExpanded" time="0.0257" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="ClientIPAddress" name="New-AzPostgreSqlFlexibleServerFirewallRule.ClientIPAddress" time="0.0237" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="AllowAll" name="New-AzPostgreSqlFlexibleServerFirewallRule.AllowAll" time="0.0244" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\New-AzPostgreSqlReplica.Tests.ps1" executed="True" result="Success" success="True" time="0.3452" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\New-AzPostgreSqlReplica.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="New-AzPostgreSqlReplica" executed="True" result="Success" success="True" time="0.1317" asserts="0" description="New-AzPostgreSqlReplica">
+            <results>
+              <test-case description="CreateExpanded" name="New-AzPostgreSqlReplica.CreateExpanded" time="0.0801" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\New-AzPostgreSqlServer.Tests.ps1" executed="True" result="Success" success="True" time="0.3031" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\New-AzPostgreSqlServer.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="New-AzPostgreSqlServer" executed="True" result="Success" success="True" time="0.0912" asserts="0" description="New-AzPostgreSqlServer">
+            <results>
+              <test-case description="CreateExpanded" name="New-AzPostgreSqlServer.CreateExpanded" time="0.0419" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\New-AzPostgreSqlVirtualNetworkRule.Tests.ps1" executed="True" result="Success" success="True" time="0.2791" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\New-AzPostgreSqlVirtualNetworkRule.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="New-AzPostgreSqlVirtualNetworkRule" executed="True" result="Success" success="True" time="0.0677" asserts="0" description="New-AzPostgreSqlVirtualNetworkRule">
+            <results>
+              <test-case description="CreateExpanded" name="New-AzPostgreSqlVirtualNetworkRule.CreateExpanded" time="0.0163" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Remove-AzPostgreSqlFirewallRule.Tests.ps1" executed="True" result="Success" success="True" time="0.3184" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Remove-AzPostgreSqlFirewallRule.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Remove-AzPostgreSqlFirewallRule" executed="True" result="Success" success="True" time="0.1051" asserts="0" description="Remove-AzPostgreSqlFirewallRule">
+            <results>
+              <test-case description="Delete" name="Remove-AzPostgreSqlFirewallRule.Delete" time="0.0184" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="DeleteViaIdentity" name="Remove-AzPostgreSqlFirewallRule.DeleteViaIdentity" time="0.0242" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Remove-AzPostgreSqlFlexibleServer.Tests.ps1" executed="True" result="Success" success="True" time="0.2904" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Remove-AzPostgreSqlFlexibleServer.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Remove-AzPostgreSqlFlexibleServer" executed="True" result="Success" success="True" time="0.0846" asserts="0" description="Remove-AzPostgreSqlFlexibleServer">
+            <results>
+              <test-case description="Delete" name="Remove-AzPostgreSqlFlexibleServer.Delete" time="0.019" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="DeleteViaIdentity" name="Remove-AzPostgreSqlFlexibleServer.DeleteViaIdentity" time="0.0121" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Remove-AzPostgreSqlFlexibleServerFirewallRule.Tests.ps1" executed="True" result="Success" success="True" time="0.32" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Remove-AzPostgreSqlFlexibleServerFirewallRule.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Remove-AzPostgreSqlFlexibleServerFirewallRule" executed="True" result="Success" success="True" time="0.1068" asserts="0" description="Remove-AzPostgreSqlFlexibleServerFirewallRule">
+            <results>
+              <test-case description="Delete" name="Remove-AzPostgreSqlFlexibleServerFirewallRule.Delete" time="0.016" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="DeleteViaIdentity" name="Remove-AzPostgreSqlFlexibleServerFirewallRule.DeleteViaIdentity" time="0.0222" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Remove-AzPostgreSqlServer.Tests.ps1" executed="True" result="Success" success="True" time="0.3179" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Remove-AzPostgreSqlServer.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Remove-AzPostgreSqlServer" executed="True" result="Success" success="True" time="0.1104" asserts="0" description="Remove-AzPostgreSqlServer">
+            <results>
+              <test-case description="Delete" name="Remove-AzPostgreSqlServer.Delete" time="0.0302" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="DeleteViaIdentity" name="Remove-AzPostgreSqlServer.DeleteViaIdentity" time="0.0239" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Remove-AzPostgreSqlVirtualNetworkRule.Tests.ps1" executed="True" result="Success" success="True" time="0.3281" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Remove-AzPostgreSqlVirtualNetworkRule.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Remove-AzPostgreSqlVirtualNetworkRule" executed="True" result="Success" success="True" time="0.099" asserts="0" description="Remove-AzPostgreSqlVirtualNetworkRule">
+            <results>
+              <test-case description="Delete" name="Remove-AzPostgreSqlVirtualNetworkRule.Delete" time="0.0201" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="DeleteViaIdentity" name="Remove-AzPostgreSqlVirtualNetworkRule.DeleteViaIdentity" time="0.025" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Restart-AzPostgreSqlFlexibleServer.Tests.ps1" executed="True" result="Success" success="True" time="0.2985" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Restart-AzPostgreSqlFlexibleServer.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Restart-AzPostgreSqlFlexibleServer" executed="True" result="Success" success="True" time="0.0897" asserts="0" description="Restart-AzPostgreSqlFlexibleServer">
+            <results>
+              <test-case description="Restart" name="Restart-AzPostgreSqlFlexibleServer.Restart" time="0.0221" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="RestartViaIdentity" name="Restart-AzPostgreSqlFlexibleServer.RestartViaIdentity" time="0.0165" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Restart-AzPostgreSqlServer.Tests.ps1" executed="True" result="Success" success="True" time="0.3603" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Restart-AzPostgreSqlServer.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Restart-AzPostgreSqlServer" executed="True" result="Success" success="True" time="0.1484" asserts="0" description="Restart-AzPostgreSqlServer">
+            <results>
+              <test-case description="Restart" name="Restart-AzPostgreSqlServer.Restart" time="0.0471" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="RestartViaIdentity" name="Restart-AzPostgreSqlServer.RestartViaIdentity" time="0.0424" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Restore-AzPostgreSqlFlexibleServer.Tests.ps1" executed="True" result="Success" success="True" time="0.3051" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Restore-AzPostgreSqlFlexibleServer.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Restore-AzPostgreSqlFlexibleServer" executed="True" result="Success" success="True" time="0.0919" asserts="0" description="Restore-AzPostgreSqlFlexibleServer">
+            <results>
+              <test-case description="PointInTimeRestore" name="Restore-AzPostgreSqlFlexibleServer.PointInTimeRestore" time="0.0435" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Restore-AzPostgreSqlServer.Tests.ps1" executed="True" result="Success" success="True" time="1.1658" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Restore-AzPostgreSqlServer.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Restore-AzPostgreSqlServer" executed="True" result="Success" success="True" time="0.9467" asserts="0" description="Restore-AzPostgreSqlServer">
+            <results>
+              <test-case description="GeoRestore" name="Restore-AzPostgreSqlServer.GeoRestore" time="0.2664" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="PointInTimeRestore" name="Restore-AzPostgreSqlServer.PointInTimeRestore" time="0.6237" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Start-AzPostgreSqlFlexibleServer.Tests.ps1" executed="True" result="Success" success="True" time="0.3262" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Start-AzPostgreSqlFlexibleServer.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Start-AzPostgreSqlFlexibleServer" executed="True" result="Success" success="True" time="0.1196" asserts="0" description="Start-AzPostgreSqlFlexibleServer">
+            <results>
+              <test-case description="Start" name="Start-AzPostgreSqlFlexibleServer.Start" time="0.0423" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="StartViaIdentity" name="Start-AzPostgreSqlFlexibleServer.StartViaIdentity" time="0.0244" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Stop-AzPostgreSqlFlexibleServer.Tests.ps1" executed="True" result="Success" success="True" time="0.3159" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Stop-AzPostgreSqlFlexibleServer.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Stop-AzPostgreSqlFlexibleServer" executed="True" result="Success" success="True" time="0.1088" asserts="0" description="Stop-AzPostgreSqlFlexibleServer">
+            <results>
+              <test-case description="Stop" name="Stop-AzPostgreSqlFlexibleServer.Stop" time="0.0227" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="StopViaIdentity" name="Stop-AzPostgreSqlFlexibleServer.StopViaIdentity" time="0.0267" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Update-AzPostgreSqlConfiguration.Tests.ps1" executed="True" result="Success" success="True" time="0.2932" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Update-AzPostgreSqlConfiguration.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Update-AzPostgreSqlConfiguration" executed="True" result="Success" success="True" time="0.0907" asserts="0" description="Update-AzPostgreSqlConfiguration">
+            <results>
+              <test-case description="UpdateExpanded" name="Update-AzPostgreSqlConfiguration.UpdateExpanded" time="0.0249" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="UpdateViaIdentityExpanded" name="Update-AzPostgreSqlConfiguration.UpdateViaIdentityExpanded" time="0.0134" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Update-AzPostgreSqlFirewallRule.Tests.ps1" executed="True" result="Success" success="True" time="0.3422" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Update-AzPostgreSqlFirewallRule.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Update-AzPostgreSqlFirewallRule" executed="True" result="Success" success="True" time="0.1342" asserts="0" description="Update-AzPostgreSqlFirewallRule">
+            <results>
+              <test-case description="ClientIPAddress" name="Update-AzPostgreSqlFirewallRule.ClientIPAddress" time="0.0442" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="UpdateViaIdentityExpanded" name="Update-AzPostgreSqlFirewallRule.UpdateViaIdentityExpanded" time="0.0365" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Update-AzPostgreSqlFlexibleServer.Tests.ps1" executed="True" result="Success" success="True" time="0.2999" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Update-AzPostgreSqlFlexibleServer.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Update-AzPostgreSqlFlexibleServer" executed="True" result="Success" success="True" time="0.0976" asserts="0" description="Update-AzPostgreSqlFlexibleServer">
+            <results>
+              <test-case description="UpdateExpanded" name="Update-AzPostgreSqlFlexibleServer.UpdateExpanded" time="0.0348" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="UpdateViaIdentityExpanded" name="Update-AzPostgreSqlFlexibleServer.UpdateViaIdentityExpanded" time="0.014" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Update-AzPostgreSqlFlexibleServerConfiguration.Tests.ps1" executed="True" result="Success" success="True" time="0.3171" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Update-AzPostgreSqlFlexibleServerConfiguration.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Update-AzPostgreSqlFlexibleServerConfiguration" executed="True" result="Success" success="True" time="0.0919" asserts="0" description="Update-AzPostgreSqlFlexibleServerConfiguration">
+            <results>
+              <test-case description="UpdateExpanded" name="Update-AzPostgreSqlFlexibleServerConfiguration.UpdateExpanded" time="0.0253" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="UpdateViaIdentityExpanded" name="Update-AzPostgreSqlFlexibleServerConfiguration.UpdateViaIdentityExpanded" time="0.0135" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Update-AzPostgreSqlFlexibleServerFirewallRule.Tests.ps1" executed="True" result="Success" success="True" time="0.3915" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Update-AzPostgreSqlFlexibleServerFirewallRule.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Update-AzPostgreSqlFlexibleServerFirewallRule" executed="True" result="Success" success="True" time="0.1518" asserts="0" description="Update-AzPostgreSqlFlexibleServerFirewallRule">
+            <results>
+              <test-case description="UpdateExpanded" name="Update-AzPostgreSqlFlexibleServerFirewallRule.UpdateExpanded" time="0.0288" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="ClientIPAddress" name="Update-AzPostgreSqlFlexibleServerFirewallRule.ClientIPAddress" time="0.0149" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="UpdateViaIdentityExpanded" name="Update-AzPostgreSqlFlexibleServerFirewallRule.UpdateViaIdentityExpanded" time="0.0172" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="ClientIPAddressViaIdentity" name="Update-AzPostgreSqlFlexibleServerFirewallRule.ClientIPAddressViaIdentity" time="0.0121" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Update-AzPostgreSqlServer.Tests.ps1" executed="True" result="Success" success="True" time="0.3151" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Update-AzPostgreSqlServer.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Update-AzPostgreSqlServer" executed="True" result="Success" success="True" time="0.1091" asserts="0" description="Update-AzPostgreSqlServer">
+            <results>
+              <test-case description="UpdateExpanded" name="Update-AzPostgreSqlServer.UpdateExpanded" time="0.032" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="UpdateViaIdentityExpanded" name="Update-AzPostgreSqlServer.UpdateViaIdentityExpanded" time="0.0205" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Update-AzPostgreSqlVirtualNetworkRule.Tests.ps1" executed="True" result="Success" success="True" time="0.3216" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\PostgreSql\test\Update-AzPostgreSqlVirtualNetworkRule.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Update-AzPostgreSqlVirtualNetworkRule" executed="True" result="Success" success="True" time="0.1197" asserts="0" description="Update-AzPostgreSqlVirtualNetworkRule">
+            <results>
+              <test-case description="UpdateExpanded" name="Update-AzPostgreSqlVirtualNetworkRule.UpdateExpanded" time="0.0374" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="UpdateViaIdentityExpanded" name="Update-AzPostgreSqlVirtualNetworkRule.UpdateViaIdentityExpanded" time="0.0364" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
