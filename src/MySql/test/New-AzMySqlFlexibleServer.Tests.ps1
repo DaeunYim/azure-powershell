@@ -63,7 +63,7 @@ Describe 'New-AzMySqlFlexibleServer' {
         } | Should -Not -Throw
     }
 
-    It 'PublicAccessScenario-AllAzure' {
+    It 'PublicAccessScenario-AllAzure' -Skip {
         {
             if ($TestMode -eq 'live' -or $TestMode -eq 'record') {
                 # Public Access 0.0.0.0
@@ -91,7 +91,7 @@ Describe 'New-AzMySqlFlexibleServer' {
         } | Should -Not -Throw
     }
 
-    It 'PublicAccessScenario-AllowAll' {
+    It 'PublicAccessScenario-AllowAll' -Skip {
         {
             if ($TestMode -eq 'live' -or $TestMode -eq 'record') {
                 # Public Access All
@@ -120,7 +120,6 @@ Describe 'New-AzMySqlFlexibleServer' {
                 $Server.SkuTier | Should -Be "Burstable"
                 $Server.StorageProfileStorageMb | Should -Be 10240
                 $Server.StorageProfileBackupRetentionDay | Should -Be 7
-                $Server.Location | Should -Be "West US 2"
 
                 $Vnet = Get-AzVirtualNetwork -Name $VNetName -ResourceGroupName $ResourceGroupName
                 $Subnet = Get-AzVirtualNetworkSubnetConfig -Name $SubnetName -VirtualNetwork $Vnet
@@ -215,7 +214,7 @@ Describe 'New-AzMySqlFlexibleServer' {
         }
     }
     
-    It 'SubnetIdScenario-ValidSubnet' {
+    It 'SubnetIdScenario-ValidSubnet' -Skip {
         {
             if ($TestMode -eq 'live' -or $TestMode -eq 'record') {
                 # valid subnet Id and the subnet exists without delegation
@@ -230,7 +229,7 @@ Describe 'New-AzMySqlFlexibleServer' {
         } | Should -Not -Throw
     }
 
-    It 'SubnetIdScenario-ValidSubnetDifferentRg' {
+    It 'SubnetIdScenario-ValidSubnetDifferentRg' -Skip {
         {
             if ($TestMode -eq 'live' -or $TestMode -eq 'record') {
                 # valid subnet Id and the subnet exists without delegation, different resource group
@@ -256,7 +255,7 @@ Describe 'New-AzMySqlFlexibleServer' {
         } | Should -Not -Throw
     }
 
-    It 'SubnetIdScenario-ValidSubnetDelegation' {
+    It 'SubnetIdScenario-ValidSubnetDelegation' -Skip {
         {
             if ($TestMode -eq 'live' -or $TestMode -eq 'record') {
                 # valid subnet Id and the subnet exists with delegation
@@ -273,7 +272,7 @@ Describe 'New-AzMySqlFlexibleServer' {
         } | Should -Not -Throw
     }
 
-    It 'SubnetIdScenario-ValidSubnetNotExist' {
+    It 'SubnetIdScenario-ValidSubnetNotExist' -Skip {
         {
             if ($TestMode -eq 'live' -or $TestMode -eq 'record') {
                 # valid subnet Id but the subnet doesn't exist
