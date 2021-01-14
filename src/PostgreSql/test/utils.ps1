@@ -43,6 +43,7 @@ function setupEnv() {
         $restoreName2 = $PowershellPrefix + "2-restore-server" + $RandomNumbers
         $restoreName = $PowershellPrefix + "replica-server" + $RandomNumbers
         $firewallRuleName = $PowershellPrefix + "firewallrule" + $RandomNumbers
+        $VNetName = $PowershellPrefix + "postgresqlvnet" + $RandomNumbers
     }
 
 

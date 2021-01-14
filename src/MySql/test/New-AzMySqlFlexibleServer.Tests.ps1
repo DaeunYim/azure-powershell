@@ -152,18 +152,18 @@ Describe 'New-AzMySqlFlexibleServer' {
         } | Should -Not -Throw
     }
 
-    It 'VnetNameScenario-ValidVnetNotExist' {
-        {
-            if ($TestMode -eq 'live' -or $TestMode -eq 'record') {
-                # valid vnet name but the vnet doesn't exist
-                $Server = New-AzMySqlFlexibleServer -Location $env.location -Name $env.serverName3 -ResourceGroupName $env.resourceGroup -Vnet nonexistingvnetforpowershelltest
+    # It 'VnetNameScenario-ValidVnetNotExist' {
+    #     {
+    #         if ($TestMode -eq 'live' -or $TestMode -eq 'record') {
+    #             # valid vnet name but the vnet doesn't exist
+    #             $Server = New-AzMySqlFlexibleServer -Location $env.location -Name $env.serverName3 -ResourceGroupName $env.resourceGroup -Vnet nonexistingvnetforpowershelltest
                 
-                $SubnetName = 'Subnet' + $Server.Name
-                ValidateSubnetVnet $Server nonexistingvnetforpowershelltest $SubnetName
-                RemoveServerVnet $env.serverName3 nonexistingvnetforpowershelltest $SubnetName
-            }
-        } | Should -Not -Throw
-    }
+    #             $SubnetName = 'Subnet' + $Server.Name
+    #             ValidateSubnetVnet $Server nonexistingvnetforpowershelltest $SubnetName
+    #             RemoveServerVnet $env.serverName3 nonexistingvnetforpowershelltest $SubnetName
+    #         }
+    #     } | Should -Not -Throw
+    # }
 
     # It 'VnetNameScenario-InvalidVnet' {
     #     if ($TestMode -eq 'live' -or $TestMode -eq 'record') {
@@ -319,17 +319,17 @@ Describe 'New-AzMySqlFlexibleServer' {
     #     } | Should -Not -Throw
     # }
 
-    It 'VnetSubnetScenario-ValidVnetSubnet' {
-        {
-            if ($TestMode -eq 'live' -or $TestMode -eq 'record') {
-                # vnet name and subnet name, resource exist
-                $Server = New-AzMySqlFlexibleServer -Location $env.location -Name $env.serverName2 -ResourceGroupName $env.resourceGroup -Vnet $env.VNetName -Subnet $env.SubnetName
+    # It 'VnetSubnetScenario-ValidVnetSubnet' {
+    #     {
+    #         if ($TestMode -eq 'live' -or $TestMode -eq 'record') {
+    #             # vnet name and subnet name, resource exist
+    #             $Server = New-AzMySqlFlexibleServer -Location $env.location -Name $env.serverName2 -ResourceGroupName $env.resourceGroup -Vnet $env.VNetName -Subnet $env.SubnetName
             
-                ValidateSubnetVnet $Server $env.VNetName $env.SubnetName
-                RemoveServerVnet $env.serverName2 $env.VNetName $env.SubnetName
-            }
-        } | Should -Not -Throw
-    }
+    #             ValidateSubnetVnet $Server $env.VNetName $env.SubnetName
+    #             RemoveServerVnet $env.serverName2 $env.VNetName $env.SubnetName
+    #         }
+    #     } | Should -Not -Throw
+    # }
 }
 
 
