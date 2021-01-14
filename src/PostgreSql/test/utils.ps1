@@ -16,6 +16,7 @@ function setupEnv() {
     #[SuppressMessage("Microsoft.Security", "CS002:SecretInNextLine")]  
     $password = 'Pa88word!' | ConvertTo-SecureString -AsPlainText -Force
     $serverName = "postgresql-test-100"
+    $flexibleServerName = "postgresql-flexibleserver-test-100"
     $serverName2 = "postgresql-test-200"
     $serverName3 = "postgresql-test-300"
     $restoreName = "postgresql-test-100-restore"
@@ -68,8 +69,8 @@ function setupEnv() {
 
     write-host (Get-AzContext | Out-String)
 
-    write-host "New-AzPostgreSqlFlexibleServer -Name $serverName -ResourceGroupName $resourceGroup -AdministratorUserName adminuser -AdministratorLoginPassword $password -Location $location -PublicAccess none"
-    New-AzPostgreSqlFlexibleServer -Name $serverName -ResourceGroupName $resourceGroup -AdministratorUserName adminuser -AdministratorLoginPassword $password -Location $location -PublicAccess none
+    write-host "New-AzPostgreSqlFlexibleServer -Name $flexibleServerName -ResourceGroupName $resourceGroup -AdministratorUserName adminuser -AdministratorLoginPassword $password -Location $location -PublicAccess none"
+    New-AzPostgreSqlFlexibleServer -Name $flexibleServerName -ResourceGroupName $resourceGroup -AdministratorUserName adminuser -AdministratorLoginPassword $password -PublicAccess none -Location $location
     
     $envFile = 'env.json'
     if ($TestMode -eq 'live') {
@@ -81,5 +82,5 @@ function cleanupEnv() {
     # Clean resources you create for testing
     # Removing resourcegroup will clean all the resources created for testing.
     write-host "Clean resources you create for testing."
-    Remove-AzResourceGroup -Name $env.resourceGroup
+    Remove-AzResourceGroup -Name $env.resourceGroup -Force
 }
