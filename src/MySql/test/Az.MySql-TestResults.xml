@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="nunit_schema_2.5.xsd" name="Pester" total="4" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2021-01-13" time="14:27:35">
+  <environment cwd="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\MySql" nunit-version="2.5.8.0" user="daeunyim" user-domain="REDMOND" os-version="10.0.19042" clr-version="Unknown" machine-name="DESKTOP-R88RMV9" platform="Microsoft Windows 10 Enterprise|C:\WINDOWS|\Device\Harddisk0\Partition3" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="TestFixture" name="Pester" executed="True" result="Success" success="True" time="7.9633" asserts="0" description="Pester">
+    <results>
+      <test-suite type="TestFixture" name="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\MySql\test\Get-AzMySqlFlexibleServerConnect.Tests.ps1" executed="True" result="Success" success="True" time="7.9633" asserts="0" description="C:\Users\daeunyim\work\PowerShell\azure-powershell\src\MySql\test\Get-AzMySqlFlexibleServerConnect.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Get-AzMySqlFlexibleServerConnect" executed="True" result="Success" success="True" time="7.5841" asserts="0" description="Get-AzMySqlFlexibleServerConnect">
+            <results>
+              <test-case description="Get" name="Get-AzMySqlFlexibleServerConnect.Get" time="3.6637" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="GetViaIdentity" name="Get-AzMySqlFlexibleServerConnect.GetViaIdentity" time="1.5982" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="GetAndQuery" name="Get-AzMySqlFlexibleServerConnect.GetAndQuery" time="1.0943" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="GetViaIdentityAndQuery" name="Get-AzMySqlFlexibleServerConnect.GetViaIdentityAndQuery" time="0.9073" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

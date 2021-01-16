@@ -25,7 +25,7 @@ Describe 'Remove-AzMySqlFlexibleServer' {
         } | Should -Not -Throw
     }
 
-    It 'DeleteViaIdentity' {
+    It 'DeleteViaIdentity' -Skip {
         {
             if ($TestMode -eq 'live' -or $TestMode -eq 'record') {
                 #[SuppressMessage("Microsoft.Security", "CS002:SecretInNextLine")]

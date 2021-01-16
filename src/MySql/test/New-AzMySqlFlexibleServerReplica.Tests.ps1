@@ -19,7 +19,6 @@ Describe 'New-AzMySqlFlexibleServerReplica' {
             $replica = Get-AzMySqlFlexibleServer -ResourceGroupName $env.resourceGroup -ServerName $env.flexibleServerName | New-AzMySqlFlexibleServerReplica -Replica $env.replicaName -ResourceGroupName $env.resourceGroup 
             $replica.Name | Should -Be $env.replicaName
             $replica.SkuName | Should -Be $env.flexibleSku
-            $replica.Location | Should -Be "West US 2"
             Remove-AzMySqlFlexibleServer -ResourceGroupName $env.resourceGroup -Name $env.replicaName
         } | Should -Not -Throw
     }

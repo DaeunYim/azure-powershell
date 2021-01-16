@@ -12,24 +12,24 @@ while(-not $mockingPath) {
 . ($mockingPath | Select-Object -First 1).FullName
 
 Describe 'Remove-AzPostgreSqlFlexibleServer' {
-    It 'Delete' {
+    It 'Delete' -Skip {
         {
             If ($TestMode -eq 'live' -or $TestMode -eq 'record') {
                 #[SuppressMessage("Microsoft.Security", "CS002:SecretInNextLine")]
                 $password = 'Pasword01!!2020' | ConvertTo-SecureString -AsPlainText -Force
-                New-AzPostgreSqlFlexibleServer -Location $env.location -ResourceGroupName $env.resourceGroup -Name $env.serverName2 -AdministratorUserName mysql_test -AdministratorLoginPassword $password 
+                New-AzPostgreSqlFlexibleServer -Location $env.location -ResourceGroupName $env.resourceGroup -Name $env.serverName2 -AdministratorUserName mysql_test -AdministratorLoginPassword $password -PublicAccess None
             }
             Remove-AzPostgreSqlFlexibleServer -ResourceGroupName $env.resourceGroup -Name $env.serverName2
         } | Should -Not -Throw
     }
 
-    It 'DeleteViaIdentity' {
+    It 'DeleteViaIdentity' -Skip {
         {
             $ID = "/subscriptions/$($env.SubscriptionId)/resourceGroups/$($env.resourceGroup)/providers/Microsoft.DBForPostgreSql/flexibleServers/$($env.serverName2)"
             If ($TestMode -eq 'live' -or $TestMode -eq 'record') {
                 #[SuppressMessage("Microsoft.Security", "CS002:SecretInNextLine")]
                 $password = 'Pasword01!!2020' | ConvertTo-SecureString -AsPlainText -Force
-                New-AzPostgreSqlFlexibleServer -Location $env.location -ResourceGroupName $env.resourceGroup -Name $env.serverName2 -AdministratorUserName mysql_test -AdministratorLoginPassword $password 
+                New-AzPostgreSqlFlexibleServer -Location $env.location -ResourceGroupName $env.resourceGroup -Name $env.serverName2 -AdministratorUserName mysql_test -AdministratorLoginPassword $password -PublicAccess None
             }
             Remove-AzPostgreSqlFlexibleServer -InputObject $ID
         } | Should -Not -Throw
