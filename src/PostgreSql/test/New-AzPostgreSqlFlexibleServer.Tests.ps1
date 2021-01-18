@@ -100,7 +100,7 @@ Describe 'New-AzPostgreSqlFlexibleServer' {
         }
     }
 
-    It 'VnetNameScenario-ValidVnet' {
+    It 'VnetNameScenario-ValidVnet' -Skip {
         If ($TestMode -eq 'live' -or $TestMode -eq 'record') {
             {
                 # valid vnet name and the vnet exists
@@ -114,7 +114,7 @@ Describe 'New-AzPostgreSqlFlexibleServer' {
         }
     }
 
-    It 'NoArgumentsScenario' {
+    It 'NoArgumentsScenario' -Skip {
         If ($TestMode -eq 'live' -or $TestMode -eq 'record') {
             {
                 $Server = New-AzPostgreSqlFlexibleServer

@@ -105,7 +105,7 @@ Describe 'New-AzMySqlFlexibleServer' {
         } | Should -Not -Throw
     }
 
-    It 'NoArgumentsScenario' {
+    It 'NoArgumentsScenario' -Skip {
         {
             if ($TestMode -eq 'live' -or $TestMode -eq 'record') {
                 $Server = New-AzMySqlFlexibleServer -Location $env.location
@@ -138,7 +138,7 @@ Describe 'New-AzMySqlFlexibleServer' {
         } | Should -Not -Throw
     }
 
-    It 'VnetNameScenario-ValidVnet' {
+    It 'VnetNameScenario-ValidVnet' -Skip {
         {
             if ($TestMode -eq 'live' -or $TestMode -eq 'record') {
                 # valid vnet name and the vnet exists
