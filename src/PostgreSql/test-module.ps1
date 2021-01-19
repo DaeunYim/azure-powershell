@@ -27,10 +27,18 @@ $requireResourceModule = (($baseName -ne "Resources") -and ($Record.IsPresent -o
 . (Join-Path $PSScriptRoot 'check-dependencies.ps1') -Isolated -Accounts:$false -Pester -Resources:$requireResourceModule
 . ("$PSScriptRoot\test\utils.ps1")
 
-if ($requireResourceModule) {
-  $resourceModulePSD = Get-Item -Path (Join-Path $HOME '.PSSharedModules\Resources\Az.Resources.TestSupport.psd1')
-  Import-Module -Name $resourceModulePSD.FullName
+# if ($requireResourceModule) {
+#   $resourceModulePSD = Get-Item -Path (Join-Path $HOME '.PSSharedModules\Resources\Az.Resources.TestSupport.psd1')
+#   Import-Module -Name $resourceModulePSD.FullName
+# }
+
+if (Get-Module -Name Az.Resources) {
+  Write-Host "Resources already here"
 }
+else {
+  Import-Module -Name Az.Resources
+}
+
 
 $localModulesPath = Join-Path $PSScriptRoot 'generated\modules'
 if(Test-Path -Path $localModulesPath) {
@@ -56,7 +64,8 @@ try {
     setupEnv
   }
   $testFolder = Join-Path $PSScriptRoot 'test'
-  Invoke-Pester -Script @{ Path = $testFolder } -EnableExit -OutputFile (Join-Path $testFolder "$moduleName-TestResults.xml")
+  $testFiles = Join-Path $PSScriptRoot 'test/*-AzPostgreSqlFlexibleServer*'
+  Invoke-Pester -Script @{ Path = $testFiles } -EnableExit -OutputFile (Join-Path $testFolder "$moduleName-TestResults.xml")
 }
 Finally
 {
