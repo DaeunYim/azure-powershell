@@ -243,7 +243,7 @@ namespace Microsoft.Azure.PowerShell.Cmdlets.PostgreSql.Cmdlets
         SerializedName = @"tier",
         PossibleTypes = new [] { typeof(Microsoft.Azure.PowerShell.Cmdlets.PostgreSql.Support.SkuTier) })]
         [global::System.Management.Automation.ArgumentCompleter(typeof(Microsoft.Azure.PowerShell.Cmdlets.PostgreSql.Support.SkuTier))]
-        public Microsoft.Azure.PowerShell.Cmdlets.PostgreSql.Support.SkuTier SkuTier { get => ParametersBody.SkuTier; set => ParametersBody.SkuTier = value; }
+        public Microsoft.Azure.PowerShell.Cmdlets.PostgreSql.Support.SkuTier SkuTier { get => ParametersBody.SkuTier ?? ((Microsoft.Azure.PowerShell.Cmdlets.PostgreSql.Support.SkuTier)""); set => ParametersBody.SkuTier = value; }
 
         /// <summary>Backup retention days for the server.</summary>
         [global::System.Management.Automation.Parameter(Mandatory = false, HelpMessage = "Backup retention days for the server.")]
