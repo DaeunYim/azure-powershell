@@ -22,7 +22,7 @@ Describe 'Start-AzPostgreSqlFlexibleServer' {
     It 'StartViaIdentity' {
         {
             $ID = "/subscriptions/$($env.SubscriptionId)/resourceGroups/$($env.resourceGroup)/providers/Microsoft.DBForPostgreSql/flexibleServers/$($env.flexibleServerName)/start"
-            Stop-AzPostgreSqlFlexibleServer -InputObject $ID
+            Stop-AzPostgreSqlFlexibleServer -ResourceGroupName $env.resourceGroup -Name $env.flexibleServerName
             Start-AzPostgreSqlFlexibleServer -InputObject $ID
         } | Should -Not -Throw
     }
