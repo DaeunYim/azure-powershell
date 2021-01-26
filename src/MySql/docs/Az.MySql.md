@@ -26,9 +26,6 @@ Gets information about a server.
 ### [Get-AzMySqlFlexibleServerConfiguration](Get-AzMySqlFlexibleServerConfiguration.md)
 Gets information about a configuration of server.
 
-### [Get-AzMySqlFlexibleServerConnect](Get-AzMySqlFlexibleServerConnect.md)
-Test out the connection to the database server
-
 ### [Get-AzMySqlFlexibleServerConnectionString](Get-AzMySqlFlexibleServerConnectionString.md)
 Get the connection string according to client connection provider.
 
@@ -112,6 +109,9 @@ Starts a server.
 
 ### [Stop-AzMySqlFlexibleServer](Stop-AzMySqlFlexibleServer.md)
 Stops a server.
+
+### [Test-AzMySqlFlexibleServerConnect](Test-AzMySqlFlexibleServerConnect.md)
+Test out the connection to the database server
 
 ### [Update-AzMySqlConfiguration](Update-AzMySqlConfiguration.md)
 Updates a configuration of a server.
